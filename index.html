@@ -150,6 +150,17 @@
       </div>
     </section>
 
+    <section class="omega-drop wrap" id="omega-q600">
+      <div class="omega-drop-head">
+        <div>
+          <p class="eyebrow">Nueva seccion Omega</p>
+          <h2>Omega Q600.00</h2>
+        </div>
+        <p>Modelos separados por marca para que el catalogo se mantenga ordenado. Desliza para ver mas sin alargar la pagina.</p>
+      </div>
+      <div class="omega-scroller" id="omegaQ600Grid" aria-label="Relojes Omega Q600.00"></div>
+    </section>
+
     <section class="order-section wrap" id="pedido">
       <div class="order-copy">
         <p class="eyebrow">Pedido por WhatsApp</p>
@@ -161,7 +172,7 @@
         <label>Teléfono<input id="clientPhone" name="clientPhone" type="tel" placeholder="Ej. 5543 4601" required></label>
         <label>Reloj que deseas<select id="watchModel" name="watchModel" required>
           <option value="">Selecciona un reloj</option>
-          <option>Rolex</option><option>Hublot</option><option>Tissot</option><option>G-SHOCK</option><option>Omega</option><option>Richard Mille</option><option>Patek Philippe</option><option>Cartier</option><option>Audemars Piguet</option><option>TAG Heuer</option><option>Seiko</option><option>Citizen</option><option>Naviforce</option><option>Loto</option><option>Set para él y ella</option>
+          <option>Rolex</option><option>Hublot</option><option>Tissot</option><option>G-SHOCK</option><option>Omega</option><option>Omega Q600.00</option><option>Richard Mille</option><option>Patek Philippe</option><option>Cartier</option><option>Audemars Piguet</option><option>TAG Heuer</option><option>Seiko</option><option>Citizen</option><option>Naviforce</option><option>Loto</option><option>Set para él y ella</option>
         </select></label>
         <label>Detalle del pedido<textarea id="orderNote" name="orderNote" rows="4" placeholder="Color, estilo, cantidad o cualquier consulta especial"></textarea></label>
         <button type="submit">Enviar pedido por WhatsApp <span>↗</span></button>
@@ -179,13 +190,58 @@
   <script>
     const orderForm = document.querySelector('#orderForm');
     const watchSelect = document.querySelector('#watchModel');
-    document.querySelectorAll('[data-watch]').forEach((button) => {
-      button.addEventListener('click', () => {
-        if (![...watchSelect.options].some((option) => option.value === button.dataset.watch)) {
-          watchSelect.add(new Option(button.dataset.watch, button.dataset.watch));
-        }
-        watchSelect.value = button.dataset.watch;
-      });
+    const omegaQ600 = [
+      { title: 'Worldtimer verde correa verde', image: 'assets/omega-q600/omega-q600-01.webp' },
+      { title: 'Worldtimer blanco acero', image: 'assets/omega-q600/omega-q600-02.webp' },
+      { title: 'Worldtimer azul correa azul', image: 'assets/omega-q600/omega-q600-03.webp' },
+      { title: 'Worldtimer verde acero', image: 'assets/omega-q600/omega-q600-04.webp' },
+      { title: 'Worldtimer negro correa negra', image: 'assets/omega-q600/omega-q600-05.webp' },
+      { title: 'Worldtimer azul detalle', image: 'assets/omega-q600/omega-q600-06.webp' },
+      { title: 'Worldtimer negro en caja', image: 'assets/omega-q600/omega-q600-07.webp' },
+      { title: 'Worldtimer negro muneca', image: 'assets/omega-q600/omega-q600-08.webp' },
+      { title: 'Seamaster negro bisel rojo', image: 'assets/omega-q600/omega-q600-09.webp' },
+      { title: 'Seamaster negro bisel aqua', image: 'assets/omega-q600/omega-q600-10.webp' },
+      { title: 'Seamaster negro clasico', image: 'assets/omega-q600/omega-q600-11.webp' },
+      { title: 'Seamaster beige negro', image: 'assets/omega-q600/omega-q600-12.webp' },
+      { title: 'Set Omega cinco piezas', image: 'assets/omega-q600/omega-q600-13.webp' },
+      { title: 'Seamaster azul acero', image: 'assets/omega-q600/omega-q600-14.webp' },
+      { title: 'Worldtimer verde vitrina', image: 'assets/omega-q600/omega-q600-15.webp' },
+      { title: 'Seamaster cronografo azul rojo', image: 'assets/omega-q600/omega-q600-16.webp' },
+      { title: 'Worldtimer verde acercamiento', image: 'assets/omega-q600/omega-q600-17.webp' },
+      { title: 'Seamaster negro caucho', image: 'assets/omega-q600/omega-q600-18.webp' },
+      { title: 'Seamaster blanco deportivo', image: 'assets/omega-q600/omega-q600-19.webp' },
+      { title: 'De Ville negro dorado', image: 'assets/omega-q600/omega-q600-20.webp' },
+      { title: 'Speedmaster azul caja negra', image: 'assets/omega-q600/omega-q600-21.webp' },
+      { title: 'Worldtimer azul caja roja', image: 'assets/omega-q600/omega-q600-22.webp' },
+      { title: 'Worldtimer azul acero mano', image: 'assets/omega-q600/omega-q600-23.webp' },
+      { title: 'Classic negro acero', image: 'assets/omega-q600/omega-q600-24.webp' },
+      { title: 'De Ville negro dorado mano', image: 'assets/omega-q600/omega-q600-25.webp' },
+      { title: 'Worldtimer blanco correa negra', image: 'assets/omega-q600/omega-q600-26.webp' },
+      { title: 'Worldtimer negro acero', image: 'assets/omega-q600/omega-q600-27.webp' }
+    ];
+    const omegaQ600Grid = document.querySelector('#omegaQ600Grid');
+    if (omegaQ600Grid) {
+      omegaQ600Grid.innerHTML = omegaQ600.map((item, index) => {
+        const watchName = `Omega ${item.title} - Q600.00`;
+        return `<article class="omega-card">
+          <span class="omega-card-number">${String(index + 1).padStart(2, '0')}</span>
+          <img src="${item.image}" alt="${watchName}" loading="lazy">
+          <div class="omega-card-body">
+            <p>Omega</p>
+            <h3>${item.title}</h3>
+            <strong>Q600.00</strong>
+            <a href="#pedido" data-watch="${watchName}">Pedir por WhatsApp</a>
+          </div>
+        </article>`;
+      }).join('');
+    }
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-watch]');
+      if (!button || !watchSelect) return;
+      if (![...watchSelect.options].some((option) => option.value === button.dataset.watch)) {
+        watchSelect.add(new Option(button.dataset.watch, button.dataset.watch));
+      }
+      watchSelect.value = button.dataset.watch;
     });
     orderForm.addEventListener('submit', (event) => {
       event.preventDefault();
